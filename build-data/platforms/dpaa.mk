@@ -1,4 +1,4 @@
-# Copyright 2018-2023 NXP
+# Copyright 2018-2024 NXP
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -60,7 +60,7 @@ vpp_configure_args_dpaa += $(VPP_CFG_ARGS)
 endif
 
 
-vpp_cmake_args += -DCMAKE_TOOLCHAIN_FILE=$(PACKAGE_BUILD_DIR)/../../../toolchain.cmake -DCMAKE_C_FLAGS="-g -Ofast -fPIC -march=$(MARCH) -ftls-model=local-dynamic -Wno-error=unused-value -DALLOW_EXPERIMENTAL_API -I$(EXTRA_INC) \
+vpp_cmake_args += -DCMAKE_TOOLCHAIN_FILE=$(PACKAGE_BUILD_DIR)/../../../toolchain.cmake -DCMAKE_C_FLAGS="-g -Ofast -fPIC -march=$(MARCH) -Wno-address-of-packed-member -ftls-model=local-dynamic -Wno-error=unused-value -DALLOW_EXPERIMENTAL_API -I$(EXTRA_INC) \
 		  -mtune=$(dpaa_mtune) -funroll-all-loops -DCLIB_LOG2_CACHE_LINE_BYTES=6 -I$(OPENSSL_PATH)/include -L$(OPENSSL_PATH)/lib" -DCMAKE_SHARED_LINKER_FLAGS="-L$(OPENSSL_PATH)/lib \
 		  -L$(EXTRA_LIBS) -Wl,--dynamic-linker=/lib/ld-linux-aarch64.so.1 \
 		  -Wl,-rpath=/usr/lib64 \
