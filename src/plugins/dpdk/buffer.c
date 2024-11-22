@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017-2019 Cisco and/or its affiliates.
- * Copyright 2019-2023 NXP
+ * Copyright 2019-2024 NXP
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ dpdk_alloc_callback (vlib_main_t *vm, u8 buffer_pool_index, u32 *buffers,
                {
                        mb = rte_pktmbuf_alloc(mp);
                        if (!mb) {
-                               clib_error ("mbuf failed");
+                               clib_warning ("mbuf failed\n");
                                return 0;
                        }
                b = vlib_buffer_from_rte_mbuf (mb);
