@@ -190,7 +190,11 @@ VLIB_NODE_FN (l2flood_node) (vlib_main_t * vm,
 	      if ((member->sw_if_index != sw_if_index0) &&
 		  (!in_shg || (member->shg != in_shg)))
 		{
-		  vec_add1 (msm->members[thread_index], member);
+		  vnet_main_t *vnm = vnet_get_main ();
+		  vnet_hw_interface_t *hw = vnet_get_sup_hw_interface(vnm, member->sw_if_index);
+		  if(hw->flags & VNET_HW_INTERFACE_FLAG_LINK_UP) {
+		     vec_add1 (msm->members[thread_index], member);
+		  }
 		}
 	    }
 
